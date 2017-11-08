@@ -259,24 +259,16 @@ class tempTrender {
 		TH1D* histo = new TH1D("temperature", "Temperature;Temperature[#circC];Entries", 
 			300, -40, 40);
 			histo->SetFillColor(kRed);
-			for (int k = 0; (unsigned)k<tempVec.size()-1; k++){
-			//histo->Fill(0);
+		for (int k = 0; (unsigned)k<tempVec.size(); k++){
+			histo->Fill(tempVec.at(k));
 			}
-			//double mean = histo->GetMean();
-		cout << year.back() << endl;
-		cout << "hej" << endl;
-		
-	
-		
-		//
-		//cout << tempVec.size() << endl;
-		/*for (int k = 0; (unsigned)k<tempVec.size(); k++){
-			//histo->Fill(tempVec.at(k));
-			}*/
-		/*double mean = histo->GetMean(); 
+		double mean = histo->GetMean(); 
 		double stdev = histo->GetRMS(); 
 		TCanvas* can = new TCanvas(); 
-		histo->Draw(); */
+		histo->Draw(); 
+		
+		cout << "The mean is " << mean << endl;
+		cout << "The standard deviation is " << stdev << endl;
 
 		
 	}

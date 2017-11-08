@@ -9,7 +9,7 @@ void hotCold(tempTrender& lulea, tempTrender& karlstad, tempTrender& boras, temp
 }
 
 
-void readData(int choice) {
+void project(int choice) {
 	string dataPathLulea = "../datasets/smhi-opendata_Lulea.csv"; 
 	int startingLineLulea = 11;
 	string dataPathKarlstad = "../datasets/smhi-opendata_Karlstad.csv";
