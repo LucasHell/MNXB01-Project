@@ -116,6 +116,7 @@ class tempTrender {
 	float GetTemperature(int dataPoint){return temperature.at(dataPoint);}
 	double GetDate(int dataPoint){return decimalYear.at(dataPoint);}
 	
+
 	void hotCold() {
 		int currentYear = year.at(0); // Set starting values for year, month and day
 		int currentMonth = month.at(0);
@@ -220,6 +221,75 @@ class tempTrender {
 
 	}	
 		
+
+	void tempOnDay(int monthToCalculate, int dayToCalculate){		
+		
+		ofstream Tfile("tredjeMars.csv");
+		vector <int> yearVec; 
+		vector <float> tempVec;
+		for (int y = 0; (unsigned)y < (year.size()-1); y++){
+			
+				if (month.at(y) == monthToCalculate && day.at(y) == dayToCalculate){  
+					//Tfile << year.at(y)<< " - "<< month.at(y)<< " - " << day.at(y)<< " - " << temperature.at(y) << endl;	
+					Tfile << year.at(y) << " - " << temperature.at(y) << endl;
+					yearVec.push_back(year.at(y)); 
+					tempYear += temperature.at(y);
+					count++;							
+				}
+				if (year.at(y) != year.at(y+1)){
+					tempYearAvg = tempYear/count;
+					tempVec.push_back(tempYearAvg);
+					tempYear=0;
+					count=0;
+					cout << tempVec.at(l) << endl;
+					cout << year.at(y) << endl;
+					l++;
+				}else if (year.at(y) == year[year.size()-1] && month.at(y) == month[month.size()-1] && day.at(y) == day[day.size()-1]){
+					tempYearAvg = tempYear/count;
+					tempVec.push_back(tempYearAvg);
+					
+					//cout << tempVec.at(l) << endl;
+					
+					
+					}
+				
+				
+		}		
+		Tfile.close();
+		TH1D* histo = new TH1D("temperature", "Temperature;Temperature[#circC];Entries", 
+			300, -40, 40);
+			histo->SetFillColor(kRed);
+			for (int k = 0; (unsigned)k<tempVec.size()-1; k++){
+			//histo->Fill(0);
+			}
+			//double mean = histo->GetMean();
+		cout << year.back() << endl;
+		cout << "hej" << endl;
+		
+	
+		
+		//
+		//cout << tempVec.size() << endl;
+		/*for (int k = 0; (unsigned)k<tempVec.size(); k++){
+			//histo->Fill(tempVec.at(k));
+			}*/
+		/*double mean = histo->GetMean(); 
+		double stdev = histo->GetRMS(); 
+		TCanvas* can = new TCanvas(); 
+		histo->Draw(); */
+
+		
+	}
+		
+		
+		
+	
+			
+		
+		
+	
+
+
 	
 	private:
 	
@@ -243,7 +313,11 @@ class tempTrender {
 	vector<int> hotDays;
 	vector<int> coldDays;
 	int daysMonth;
-	
+	float tempYear;
+	int count;
+	float tempYearAvg;
+	int l;
+
 	
 	//void tempOnDay(int monthToCalculate, int dayToCalculate); //Make a histogram of the temperature on this day
 	//void tempOnDay(int dateToCalculate); //Make a histogram of the temperature on this date

@@ -27,7 +27,7 @@ void readData(int choice) {
 	string dataPathUmea = "../datasets/smhi-opendata_Umea.csv";
 	int startingLineUmea = 13;
 	string dataPathVisby = "../datasets/smhi-opendata_Visby.csv"; 
-	int startingLineVisby = 11;
+	int startingLineVisby = 11; 
 	
 	tempTrender lulea(dataPathLulea, startingLineLulea);
 	lulea.readDataFile();
@@ -54,10 +54,11 @@ void readData(int choice) {
 	umea.readDataFile();
 	
 	tempTrender visby(dataPathVisby, startingLineVisby);
-	visby.readDataFile();
+	visby.readDataFile(); 
 	
+
 	switch(choice){
-		case 1 : cout << "Lisas arbete" << endl;
+		case 1 : lulea.tempOnDay(3,3); 
 				 break;
 		case 2 : cout << "Davids arbete" << endl;
 				 break;
@@ -66,4 +67,10 @@ void readData(int choice) {
 		case 4 : cout << "Alexanders arbete" << endl;
 	}
 	
+
+	
+	  
+	
+	
+
 }
